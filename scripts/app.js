@@ -1,3 +1,4 @@
+
 const gameData = [
   [0, 0, 0],
   [0, 0, 0],
@@ -6,42 +7,47 @@ const gameData = [
 
 let editedPlayer = 0;
 let activePlayer = 0;
+let currentRound = 1;
+let gameIsOver = false;
 
 const players = [
   {
-    name: "",
-    Symbol: "X",
+    name: '',
+    symbol: 'X'
   },
   {
-    name: "",
-    Symbol: "O",
+    name: '',
+    symbol: 'O'
   },
-  {},
 ];
 
-const playerConfigOverlayElement = document.getElementById("config-overlay");
-const backDropElement = document.getElementById("backdrop");
-const formElement = document.querySelector("form");
-const errorsOutputElement = document.getElementById("config-error");
-const gameAreaElement = document.getElementById("active-game");
-const activePlayerName = document.getElementById("active-player-name");
+const playerConfigOverlayElement = document.getElementById('config-overlay');
+const backdropElement = document.getElementById('backdrop');
+const formElement = document.querySelector('form');
+const errorsOutputElement = document.getElementById('config-errors');
+const gameAreaElement = document.getElementById('active-game');
+const activePlayerNameElement = document.getElementById('active-player-name');
+const gameOverElement = document.getElementById('game-over');
 
-const editPlayer1BtnElement = document.getElementById("edit-player-1-btn");
-const editPlayer2BtnElement = document.getElementById("edit-player-2-btn");
-const cancelConfigBtnElement = document.getElementById("cancel-config-btn");
-const startNewGameBtn = document.getElementById("startNewGameBtn");
-const gameFieldElements = document.querySelectorAll("#game-board li");
+const editPlayer1BtnElement = document.getElementById('edit-player-1-btn');
+const editPlayer2BtnElement = document.getElementById('edit-player-2-btn');
+const cancelConfigBtnElement = document.getElementById('cancel-config-btn');
+const startNewGameBtnElement = document.getElementById('start-game-btn');
+// const gameFieldElements = document.querySelectorAll('#game-board li');
+const gameBoardElement = document.getElementById('game-board');
 
-editPlayer1BtnElement.addEventListener("click", openPlayerConfig);
-editPlayer2BtnElement.addEventListener("click", openPlayerConfig);
+editPlayer1BtnElement.addEventListener('click', openPlayerConfig);
+editPlayer2BtnElement.addEventListener('click', openPlayerConfig);
 
-cancelConfigBtnElement.addEventListener("click", closePlayerConfig);
-backDropElement.addEventListener("click", closePlayerConfig);
+cancelConfigBtnElement.addEventListener('click', closePlayerConfig);
+backdropElement.addEventListener('click', closePlayerConfig);
 
-formElement.addEventListener("submit", savePlayerConfig);
+formElement.addEventListener('submit', savePlayerConfig);
 
-startNewGameBtn.addEventListener("click", startNewGame);
+startNewGameBtnElement.addEventListener('click', startNewGame);
 
-for (const gameFieldElement of gameFieldElements) {
-  gameFieldElement.addEventListener("click", selectGameField);
-}
+// for (const gameFieldElement of gameFieldElements) {
+//   gameFieldElement.addEventListener('click', selectGameField);
+// }
+
+gameBoardElement.addEventListener('click', selectGameField);
